@@ -1,3 +1,5 @@
+import { randomUUID } from 'crypto';
+
 import { sentenceLogger as log } from '../../server/winstonLog';
 import { SEQUILIZE_NEW } from '../../server/config';
 import { initModels } from '../../models-view/init-models';
@@ -6,7 +8,7 @@ import { WordTypes, SentenceTypes } from './sentenceInterfaces';
 
 const { wordtype, sentence  } = initModels(SEQUILIZE_NEW);
 
-const getWordTypes = async (): Promise<WordTypes[]> => {
+const getWordTypes = async (): Promise<WordTypes[] | Error> => {
     try {
         const wordTypes = await wordtype.findAll({
             raw: true,
@@ -19,11 +21,11 @@ const getWordTypes = async (): Promise<WordTypes[]> => {
     } catch (err: any) {
         const { fileName, line } = createErrorMessage(err!);
         log.log('error', `Error in File: ${fileName} on line: ${line}, error: ${err}`);
-        return err;
+        return err as Error;
     }
 }
 
-const getSentence = async (): Promise<SentenceTypes[]> => {
+const getSentences = async (): Promise<SentenceTypes[] | Error> => {
     try {
         const sentences = await sentence.findAll({
             where: {
@@ -39,54 +41,57 @@ const getSentence = async (): Promise<SentenceTypes[]> => {
     } catch (err: any) {
         const { fileName, line } = createErrorMessage(err!);
         log.log('error', `Error in File: ${fileName} on line: ${line}, error: ${err}`);
-        return err;
+        return err as Error;
     }
 }
 
-const postSentence = async (): Promise<SentenceTypes[]> => {
+const postSentences = async (incommingSentence: string): Promise<boolean | Error> => {
     try {
-        const sentences = await sentence.findAll({
-            where: {
-                active: true,
-            },
-            raw: true,
+        const sentences = await sentence.create({
+            senteceID: randomUUID(),
+            sentence: incommingSentence,
+            active: true,
         }).catch((err) => {
             log.log('error', `Error in getting wordTypes, error: ${err}`);
             throw new Error('Error in getting wordTypes');
         });
 
-        return sentences!;
+        return !sentences ? false : true;
     } catch (err: any) {
         const { fileName, line } = createErrorMessage(err!);
         log.log('error', `Error in File: ${fileName} on line: ${line}, error: ${err}`);
-        return err;
+        return err as Error;
     }
 }
 
-const deleteSentence = async (): Promise<SentenceTypes[]> => {
+const deleteSentence = async (sentenceID: string, sentenceActive: boolean): Promise<boolean | Error> => {
     try {
-        const sentences = await sentence.findAll({
-            where: {
-                active: true,
+        const sentences = await sentence.update(
+            {
+                active: sentenceActive,
             },
-            raw: true,
-        }).catch((err) => {
+            {
+                where: {
+                    senteceID: sentenceID,
+                }
+            }
+        ).catch((err) => {
             log.log('error', `Error in getting wordTypes, error: ${err}`);
             throw new Error('Error in getting wordTypes');
         });
 
-        return sentences!;
+        return !sentences ? false : true;
     } catch (err: any) {
         const { fileName, line } = createErrorMessage(err!);
         log.log('error', `Error in File: ${fileName} on line: ${line}, error: ${err}`);
-        return err;
+        return err as Error;
     }
 }
 
 export {
     getWordTypes,
-    getSentence,
-    postSentence,
+    getSentences,
+    postSentences,
     deleteSentence,
 }
 
