@@ -15,12 +15,12 @@ const PG_CONNECTION = {
 };
 
 const SEQUILIZE_NEW = new Sequelize({
-    host: 'db',
+    host: PG_CONNECTION.host,
     dialect: 'postgres',
     port: PG_CONNECTION.port,
-    database: 'postgres',
-    username: 'postgres',
-    password: 'postgres',
+    database: PG_CONNECTION.database,
+    username: PG_CONNECTION.user,
+    password: PG_CONNECTION.password,
     benchmark: true,
     logging: false, // console.log, // false,
 });
