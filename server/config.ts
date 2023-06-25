@@ -1,7 +1,14 @@
 import { Pool } from 'pg';
 import { Sequelize } from 'sequelize';
+import * as dotenv from 'dotenv';
 
 import { configLogger as log } from './winstonLog';
+
+const result = dotenv.config();
+
+if (result.error) {
+  throw result.error;
+}
 
 const PORT = 3000;
 const HOST = '0.0.0.0';
