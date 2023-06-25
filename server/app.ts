@@ -5,6 +5,8 @@ import express, { NextFunction, Request, Response } from 'express';
 import { appLogger as log, errorHandlerLogger as errorLog } from './winstonLog';
 import createErrorMessage from './createErrorMessage';
 
+import SentenceRouter from '../routes/sentence/sentenceRoutes';
+
 class App {
     public httpServer = express();
 
@@ -34,6 +36,7 @@ class App {
 
         // this.httpServer.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerConfig));
     
+        this.httpServer.use('/runninghillapi/senttenceroutes', SentenceRouter);
 
         this.httpServer.use((err: Error, req: Request, res: Response, next: NextFunction) => {
             console.log(`error in url ${req.originalUrl} - error: ${err}`);
