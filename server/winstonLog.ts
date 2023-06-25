@@ -90,10 +90,30 @@ const sentenceLogger = createLogger({
     },
 });
 
+const wordsApiLogger = createLogger({
+    transports: [
+        new transports.File({
+        dirname: 'logs',
+        filename: 'wordsApiLogger.log',
+        }),
+    ],
+    format: format.combine(
+        format.timestamp(),
+        format.printf(({
+        timestamp, level, message, service,
+        }) => `[${timestamp}] ${service} ${level}: ${message}`),
+    ),
+    defaultMeta: {
+        service: 'WinstonExample',
+    },
+});
+
+
 export {
     appLogger,
     configLogger,
     errorHandlerLogger,
     serverLogger,
-    sentenceLogger
+    sentenceLogger,
+    wordsApiLogger
 };

@@ -6,6 +6,7 @@ import { appLogger as log, errorHandlerLogger as errorLog } from './winstonLog';
 import createErrorMessage from './createErrorMessage';
 
 import SentenceRouter from '../routes/sentence/sentenceRoutes';
+import WordsApiRouter from '../routes/wordsAPI/worsApiRoutes';
 
 class App {
     public httpServer = express();
@@ -37,6 +38,8 @@ class App {
         // this.httpServer.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerConfig));
     
         this.httpServer.use('/runninghillapi/senttenceroutes', SentenceRouter);
+
+        this.httpServer.use('/runninghillapi/wordsapi', WordsApiRouter);
 
         this.httpServer.use((err: Error, req: Request, res: Response, next: NextFunction) => {
             console.log(`error in url ${req.originalUrl} - error: ${err}`);
