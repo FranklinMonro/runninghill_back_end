@@ -1,5 +1,7 @@
 import express from 'express';
-import { getSentence, getWordType, postSentence } from './sentenceControllers';
+import {
+  deleteSentence, getSentence, getWordType, postSentence,
+} from './sentenceControllers';
 
 class SentenceRouter {
   public router = express.Router();
@@ -10,6 +12,8 @@ class SentenceRouter {
     this.router.post('/sentence', postSentence);
 
     this.router.get('/sentence', getSentence);
+
+    this.router.delete('/sentence', deleteSentence);
   }
 }
 

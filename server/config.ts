@@ -50,4 +50,5 @@ connectToDB();
 export {
     PORT,
     HOST,
+    SEQUILIZE_NEW,
 };

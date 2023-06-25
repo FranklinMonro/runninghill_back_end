@@ -29,8 +29,18 @@ const getSentence = async (req: Request, res: Response, next: NextFunction): Pro
     }
 };
 
+const deleteSentence = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  try {
+
+  } catch (err) {
+    log.log('error', `URL ${req.baseUrl}, error: ${err}`);
+    next(err);
+  }
+};
+
 export {
     getWordType,
     postSentence,
-    getSentence
+    getSentence,
+    deleteSentence,
 };
