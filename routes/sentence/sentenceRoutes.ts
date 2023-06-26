@@ -13,7 +13,7 @@ class SentenceRouter {
 
     this.router.get('/sentence', getSentence);
 
-    this.router.delete('/sentence/:sentenceID,:sentenceDelete', deleteSentence);
+    this.router.delete('/sentence/:sentenceID/:sentenceDelete', deleteSentence);
   }
 }
 
