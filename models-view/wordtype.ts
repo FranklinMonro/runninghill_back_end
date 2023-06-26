@@ -18,7 +18,8 @@ export class wordtype extends Model<wordtypeAttributes, wordtypeCreationAttribut
     return sequelize.define('wordtype', {
     typeID: {
       type: DataTypes.UUID,
-      allowNull: false
+      allowNull: false,
+      primaryKey: true
     },
     wordType: {
       type: DataTypes.STRING,

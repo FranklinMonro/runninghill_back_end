@@ -20,7 +20,8 @@ export class sentence extends Model<sentenceAttributes, sentenceCreationAttribut
     return sequelize.define('sentence', {
     senteceID: {
       type: DataTypes.UUID,
-      allowNull: false
+      allowNull: false,
+      primaryKey: true
     },
     sentence: {
       type: DataTypes.STRING,

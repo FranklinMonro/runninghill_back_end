@@ -29,7 +29,7 @@ const SEQUILIZE_NEW = new Sequelize({
   username: PG_CONNECTION.user,
   password: PG_CONNECTION.password,
   benchmark: true,
-  logging: false, // console.log, // false,
+  logging: console.log, // false,
 });
 
 const POOL_PG = new Pool(PG_CONNECTION);
