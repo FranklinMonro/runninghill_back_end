@@ -9,11 +9,11 @@ class SentenceRouter {
   constructor() {
     this.router.get('/wordtype', getWordType);
 
-    this.router.post('/sentence/:sentence', postSentence);
-
     this.router.get('/sentence', getSentence);
 
-    this.router.delete('/sentence/:sentenceID/:sentenceDelete', deleteSentence);
+    this.router.post('/sentence', postSentence);
+
+    this.router.delete('/sentence', deleteSentence);
   }
 }
 

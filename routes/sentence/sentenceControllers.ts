@@ -20,8 +20,8 @@ const getWordType = async (req: Request, res: Response, next: NextFunction): Pro
 
 const postSentence = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
-    const { sentence } = req.params;
-    const addSentence = await postSentences(sentence);
+    const { sentence } = req.query;
+    const addSentence = await postSentences(sentence as string);
     if (addSentence instanceof Error) {
       throw new Error('Error in posting sentence');
     }
@@ -47,12 +47,13 @@ const getSentence = async (req: Request, res: Response, next: NextFunction): Pro
 
 const deleteSentence = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
-    const { sentenceID, sentenceDelete } = req.params;
+    const { sentenceID, sentenceDelete } = req.query;
     const sentenceActive = sentenceDelete === 'true';
-    const sentenceDel = await deleteSentences(sentenceID, sentenceActive);
+    const sentenceDel = await deleteSentences(sentenceID as string, sentenceActive);
     if (sentenceDel instanceof Error) {
       throw new Error('Error in delete sentences');
     }
+    res.sendStatus(sentenceDel);
   } catch (err) {
     log.log('error', `URL ${req.baseUrl}, error: ${err}`);
     next(err);

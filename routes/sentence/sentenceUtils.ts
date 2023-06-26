@@ -67,7 +67,7 @@ const postSentences = async (incommingSentence: string): Promise<boolean | Error
 const deleteSentences = async (
   sentenceID: string,
   sentenceActive: boolean,
-): Promise<boolean | Error> => {
+): Promise<number | Error> => {
   try {
     const sentences = await sentence.update(
       {
@@ -82,8 +82,7 @@ const deleteSentences = async (
       log.log('error', `Error in getting wordTypes, error: ${err}`);
       throw new Error('Error in getting wordTypes');
     });
-
-    return !!sentences;
+    return sentences[0] === 1 ? 204 : 400;
   } catch (err: any) {
     const { fileName, line } = createErrorMessage(err!);
     log.log('error', `Error in File: ${fileName} on line: ${line}, error: ${err}`);
