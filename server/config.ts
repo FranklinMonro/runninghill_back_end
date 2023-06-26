@@ -47,8 +47,10 @@ const connectToDB = async () => {
 
 connectToDB();
 
+const { WORD_API_KEY } = process.env;
 export {
   PORT,
   HOST,
   SEQUILIZE_NEW,
+  WORD_API_KEY,
 };
