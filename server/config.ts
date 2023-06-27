@@ -48,9 +48,15 @@ const connectToDB = async () => {
 connectToDB();
 
 const { WORD_API_KEY } = process.env;
+
+const WORDS_API_CONFIG = {
+  url: 'https://wordsapiv1.p.rapidapi.com/words/',
+  hostname: 'wordsapiv1.p.mashape.com',
+  apiKey: WORD_API_KEY,
+};
 export {
   PORT,
   HOST,
   SEQUILIZE_NEW,
-  WORD_API_KEY,
+  WORDS_API_CONFIG,
 };
