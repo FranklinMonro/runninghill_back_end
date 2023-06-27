@@ -1,13 +1,13 @@
 {
   "tags": {
-    "name": "Announcements",
-    "description": "Announcements routes"
+    "name": "Sentences",
+    "description": "Sentences routes"
   },
   "paths": {
     "/announcements": {
       "get": {
-        "tags": ["Announcements"],
-        "summary": "Get all announcements in Beneple",
+        "tags": ["Word types"],
+        "summary": "Get all word types",
         "responses": {
           "200": {
             "description": "Success",
