@@ -16,7 +16,7 @@ const getWordsByPartOfSpeech = async (
       url: 'https://wordsapiv1.p.rapidapi.com/words/',
       params: {
         partofspeech: partOfSpeech,
-        limit: '100',
+        limit: '25',
         page: pageNumber,
       },
       headers: {
