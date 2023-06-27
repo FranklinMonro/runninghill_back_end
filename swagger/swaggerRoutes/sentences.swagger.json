@@ -4,78 +4,18 @@
     "description": "Sentences routes"
   },
   "paths": {
-    "/announcements": {
+    "/sentenceroutes/wordtype": {
       "get": {
-        "tags": ["Word types"],
+        "tags": ["Sentence routes"],
         "summary": "Get all word types",
         "responses": {
           "200": {
             "description": "Success",
             "schema": {
-              "$ref": "#/components/schemas/announcements"
+              "$ref": "#/components/schemas/wordTypes"
             }
           },
-          "500": {
-            "description": "Error in call"
-          }
-        }
-      },
-      "post": {
-        "tags": ["Announcements"],
-        "summary": "Post a announcements into beneple",
-        "responses": {
-          "200": {
-            "description": "Success",
-            "schema": {
-              "$ref": ""
-            }
-          },
-          "500": {
-            "description": "Error in call"
-          }
-        }
-      },
-      "put": {
-        "tags": ["Announcements"],
-        "summary": "Update a announcements in Beneple",
-        "responses": {
-          "200": {
-            "description": "Success",
-            "schema": {
-              "$ref": ""
-            }
-          },
-          "500": {
-            "description": "Error in call"
-          }
-        }
-      },
-      "patch": {
-        "tags": ["Announcements"],
-        "summary": "Patch a announcements in Beneple",
-        "responses": {
-          "200": {
-            "description": "Success",
-            "schema": {
-              "$ref": ""
-            }
-          },
-          "500": {
-            "description": "Error in call"
-          }
-        }
-      },
-      "delete": {
-        "tags": ["Announcements"],
-        "summary": "Delete a announcements in Beneple",
-        "responses": {
-          "200": {
-            "description": "Success",
-            "schema": {
-              "$ref": ""
-            }
-          },
-          "500": {
+          "403": {
             "description": "Error in call"
           }
         }
@@ -84,35 +24,16 @@
   },
   "components": {
     "schemas": {
-      "announcements": {
+      "wordTypes": {
         "type": "object",
         "properties": {
-          "id": {
+          "total": {
             "type": "string",
             "format": "uuid"
           },
-          "title": {
-            "type": "string",
-            "format": "charfield"
-          },
-          "content": {
+          "wordType": {
             "type": "string",
             "format": "textfield"
-          },
-          "employee": {
-            "type": "string",
-            "format": "foreignkey"
-          },
-          "active": {
-            "type": "boolean"
-          },
-          "category": {
-            "type": "string",
-            "format": "textfield"
-          },
-          "published_at": {
-            "type": "string",
-            "format": "date"
           }
         }
       }

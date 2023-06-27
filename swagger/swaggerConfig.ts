@@ -4,8 +4,8 @@ const config = {
   openapi: '3.0.3',
   info: {
     version: '1.0.0',
-    title: 'Beneple API',
-    description: 'Endpoints for Beneple API',
+    title: 'Runninghill API',
+    description: 'Endpoints for Runninghill API',
     license: {
       name: 'MIT',
       url: 'https://opensource.org/licenses/MIT',
@@ -13,14 +13,14 @@ const config = {
   },
   servers: [
     {
-      url: '/',
+      url: '/runninghillapi/',
       description: 'Local Dev',
     },
   ],
   tags: [
     {
-      name: 'Announcements',
-      description: 'API for announcements in the system',
+      name: 'Create sentences as per word type',
+      description: 'API for creating sentences',
     },
   ],
   consumes: [

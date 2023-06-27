@@ -6,7 +6,7 @@ class WordsApiRouter {
   public router = express.Router();
 
   constructor() {
-    this.router.get('/', getWords);
+    this.router.get('/:wordtype/:pagenumber', getWords);
   }
 }
 

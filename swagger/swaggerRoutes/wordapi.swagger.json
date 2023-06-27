@@ -1,81 +1,37 @@
 {
   "tags": {
-    "name": "Announcements",
-    "description": "Announcements routes"
+    "name": "Words Api",
+    "description": "Sentences routes"
   },
   "paths": {
-    "/announcements": {
+    "/wordsapi/{wordtype}/{pagenumber}": {
+      "parameters": [
+        {
+            "name": "wordtype",
+            "in": "path",
+            "required": true,
+            "description": "Word type to get words",
+            "type": "string"
+        },
+        {
+          "name": "pagenumber",
+          "in": "path",
+          "required": true,
+          "description": "Page to get of words",
+          "type": "string"
+        }
+      ],
       "get": {
-        "tags": ["Announcements"],
-        "summary": "Get all announcements in Beneple",
+        "tags": ["Words API routes"],
+        "summary": "Get all words as per word type",
         "responses": {
           "200": {
             "description": "Success",
             "schema": {
-              "$ref": "#/components/schemas/announcements"
+              "$ref": "#/components/schemas/words"
             }
           },
-          "500": {
-            "description": "Error in call"
-          }
-        }
-      },
-      "post": {
-        "tags": ["Announcements"],
-        "summary": "Post a announcements into beneple",
-        "responses": {
-          "200": {
-            "description": "Success",
-            "schema": {
-              "$ref": ""
-            }
-          },
-          "500": {
-            "description": "Error in call"
-          }
-        }
-      },
-      "put": {
-        "tags": ["Announcements"],
-        "summary": "Update a announcements in Beneple",
-        "responses": {
-          "200": {
-            "description": "Success",
-            "schema": {
-              "$ref": ""
-            }
-          },
-          "500": {
-            "description": "Error in call"
-          }
-        }
-      },
-      "patch": {
-        "tags": ["Announcements"],
-        "summary": "Patch a announcements in Beneple",
-        "responses": {
-          "200": {
-            "description": "Success",
-            "schema": {
-              "$ref": ""
-            }
-          },
-          "500": {
-            "description": "Error in call"
-          }
-        }
-      },
-      "delete": {
-        "tags": ["Announcements"],
-        "summary": "Delete a announcements in Beneple",
-        "responses": {
-          "200": {
-            "description": "Success",
-            "schema": {
-              "$ref": ""
-            }
-          },
-          "500": {
+          "403": {
             "description": "Error in call"
           }
         }
@@ -84,35 +40,25 @@
   },
   "components": {
     "schemas": {
-      "announcements": {
+      "words": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "title": {
-            "type": "string",
-            "format": "charfield"
-          },
-          "content": {
+          "page": {
             "type": "string",
             "format": "textfield"
           },
-          "employee": {
-            "type": "string",
-            "format": "foreignkey"
-          },
-          "active": {
-            "type": "boolean"
-          },
-          "category": {
-            "type": "string",
-            "format": "textfield"
-          },
-          "published_at": {
-            "type": "string",
-            "format": "date"
+          "results": {
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "results": {
+                "type": "object",
+                "format": "textfield"
+              }
+            }
           }
         }
       }

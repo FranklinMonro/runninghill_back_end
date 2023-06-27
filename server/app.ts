@@ -39,7 +39,7 @@ class App {
 
     this.httpServer.use('/runninghillapi-docs', swaggerUi.serve, swaggerUi.setup(swaggerConfig));
 
-    this.httpServer.use('/runninghillapi/senttenceroutes', SentenceRouter);
+    this.httpServer.use('/runninghillapi/sentenceroutes', SentenceRouter);
 
     this.httpServer.use('/runninghillapi/wordsapi', WordsApiRouter);
 

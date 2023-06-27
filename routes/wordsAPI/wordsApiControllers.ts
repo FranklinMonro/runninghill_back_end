@@ -5,7 +5,7 @@ import getWordsByPartOfSpeech from './wordsApiUtils';
 
 const getWords = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
-    const { wordtype, pagenumber } = req.query;
+    const { wordtype, pagenumber } = req.params;
     const wordsAsPerType = await getWordsByPartOfSpeech(wordtype as string, pagenumber as string);
     if (wordsAsPerType instanceof Error) {
       throw new Error('Error in getting words by type');
