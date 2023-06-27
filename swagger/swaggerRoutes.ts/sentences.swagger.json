@@ -1,0 +1,121 @@
+{
+  "tags": {
+    "name": "Announcements",
+    "description": "Announcements routes"
+  },
+  "paths": {
+    "/announcements": {
+      "get": {
+        "tags": ["Announcements"],
+        "summary": "Get all announcements in Beneple",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/components/schemas/announcements"
+            }
+          },
+          "500": {
+            "description": "Error in call"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Announcements"],
+        "summary": "Post a announcements into beneple",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": ""
+            }
+          },
+          "500": {
+            "description": "Error in call"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Announcements"],
+        "summary": "Update a announcements in Beneple",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": ""
+            }
+          },
+          "500": {
+            "description": "Error in call"
+          }
+        }
+      },
+      "patch": {
+        "tags": ["Announcements"],
+        "summary": "Patch a announcements in Beneple",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": ""
+            }
+          },
+          "500": {
+            "description": "Error in call"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Announcements"],
+        "summary": "Delete a announcements in Beneple",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": ""
+            }
+          },
+          "500": {
+            "description": "Error in call"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "announcements": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "title": {
+            "type": "string",
+            "format": "charfield"
+          },
+          "content": {
+            "type": "string",
+            "format": "textfield"
+          },
+          "employee": {
+            "type": "string",
+            "format": "foreignkey"
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "category": {
+            "type": "string",
+            "format": "textfield"
+          },
+          "published_at": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      }
+    }
+  }
+}

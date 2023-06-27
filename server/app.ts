@@ -1,9 +1,10 @@
 import { json, urlencoded } from 'body-parser';
 import express, { NextFunction, Request, Response } from 'express';
-// import swaggerUi from 'swagger-ui-express';
+import swaggerUi from 'swagger-ui-express';
 
 import { appLogger as log, errorHandlerLogger as errorLog } from './winstonLog';
 import createErrorMessage from './createErrorMessage';
+import swaggerConfig from '../swagger/swaggerConfig';
 
 import SentenceRouter from '../routes/sentence/sentenceRoutes';
 import WordsApiRouter from '../routes/wordsAPI/worsApiRoutes';
@@ -35,6 +36,8 @@ class App {
     });
 
     // this.httpServer.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerConfig));
+
+    this.httpServer.use('/runninghillapi-docs', swaggerUi.serve, swaggerUi.setup(swaggerConfig));
 
     this.httpServer.use('/runninghillapi/senttenceroutes', SentenceRouter);
 
