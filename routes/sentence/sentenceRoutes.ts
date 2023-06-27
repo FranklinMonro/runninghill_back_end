@@ -11,9 +11,9 @@ class SentenceRouter {
 
     this.router.get('/sentence', getSentence);
 
-    this.router.post('/sentence', postSentence);
+    this.router.post('/sentence/:sentence', postSentence);
 
-    this.router.delete('/sentence', deleteSentence);
+    this.router.delete('/sentence/:sentenceID/:sentenceDelete', deleteSentence);
   }
 }
 

@@ -20,6 +20,76 @@
           }
         }
       }
+    },
+    "/sentenceroutes/sentence": {
+      "get": {
+        "tags": ["Sentence routes"],
+        "summary": "Get all sentences",
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "403": {
+            "description": "Error in call"
+          }
+        }
+      }
+    },
+    "/sentenceroutes/sentence/{sentence}": {
+      "post": {
+        "parameters": [
+          {
+              "name": "sentence",
+              "in": "path",
+              "required": true,
+              "description": "Word type to get words",
+              "type": "string"
+          }
+        ],
+        "tags": ["Sentence routes"],
+        "summary": "Post a sentence",
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Error in deleting sentence"
+          },
+          "403": {
+            "description": "Error in call"
+          }
+        }
+      }
+    },
+    "/sentenceroutes/sentence/{sentenceID}/{sentenceDelete}": {
+      "delete": {
+        "parameters": [
+          {
+              "name": "sentenceID",
+              "in": "path",
+              "required": true,
+              "description": "Sentence ID to delete",
+              "type": "string"
+          },
+          {
+            "name": "sentenceDelete",
+            "in": "path",
+            "required": true,
+            "description": "Boolean false to make sentence inactive",
+            "type": "string"
+        }
+        ],
+        "tags": ["Sentence routes"],
+        "summary": "Delete a sentence",
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "403": {
+            "description": "Error in call"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -27,11 +97,24 @@
       "wordTypes": {
         "type": "object",
         "properties": {
-          "total": {
+          "typeID": {
             "type": "string",
             "format": "uuid"
           },
           "wordType": {
+            "type": "string",
+            "format": "textfield"
+          }
+        }
+      },
+      "sentences": {
+        "type": "object",
+        "properties": {
+          "senteceID": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "sentence": {
             "type": "string",
             "format": "textfield"
           }
