@@ -4,7 +4,7 @@ import { sentenceLogger as log } from '../../server/winstonLog';
 import { SEQUILIZE_NEW } from '../../server/config';
 import { initModels } from '../../models-view/init-models';
 import createErrorMessage from '../../server/createErrorMessage';
-import { WordTypes, SentenceTypes } from './sentenceInterfaces';
+import { WordTypes, SencteceReturns } from './sentenceInterfaces';
 
 const { wordtype, sentence } = initModels(SEQUILIZE_NEW);
 
@@ -25,12 +25,20 @@ const getWordTypes = async (): Promise<WordTypes[] | Error> => {
   }
 };
 
-const getSentences = async (page: number): Promise<SentenceTypes[] | Error> => {
+const getSentences = async (page: number): Promise<SencteceReturns | Error> => {
   try {
     const pageSize = 10;
     const offset = page * pageSize;
     const limit = pageSize;
-    const sentences = await sentence.findAll({
+    const count = await sentence.count({
+      where: {
+        active: true,
+      },
+    }).catch((err) => {
+      log.log('error', `Error in getting sentences count, error: ${err}`);
+      throw new Error('Error in getting sentences count');
+    });
+    const sentencesAll = await sentence.findAll({
       where: {
         active: true,
       },
@@ -38,11 +46,14 @@ const getSentences = async (page: number): Promise<SentenceTypes[] | Error> => {
       offset,
       raw: true,
     }).catch((err) => {
-      log.log('error', `Error in getting wordTypes, error: ${err}`);
-      throw new Error('Error in getting wordTypes');
+      log.log('error', `Error in getting sentencesAll, error: ${err}`);
+      throw new Error('Error in getting sentencesAll');
     });
 
-    return sentences!;
+    return {
+      total: count!,
+      result: sentencesAll!,
+    };
   } catch (err: any) {
     const { fileName, line } = createErrorMessage(err!);
     log.log('error', `Error in File: ${fileName} on line: ${line}, error: ${err}`);

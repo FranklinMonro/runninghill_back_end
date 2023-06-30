@@ -8,7 +8,12 @@ interface SentenceTypes {
   sentence?: string;
 }
 
+interface SencteceReturns {
+  total: number;
+  result: SentenceTypes[];
+}
+
 export {
   WordTypes,
-  SentenceTypes,
+  SencteceReturns,
 };
