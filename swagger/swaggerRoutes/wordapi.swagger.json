@@ -1,0 +1,67 @@
+{
+  "tags": {
+    "name": "Words Api",
+    "description": "Sentences routes"
+  },
+  "paths": {
+    "/wordsapi/{wordtype}/{pagenumber}": {
+      "parameters": [
+        {
+            "name": "wordtype",
+            "in": "path",
+            "required": true,
+            "description": "Word type to get words",
+            "type": "string"
+        },
+        {
+          "name": "pagenumber",
+          "in": "path",
+          "required": true,
+          "description": "Page to get of words",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": ["Words API routes"],
+        "summary": "Get all words as per word type",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/components/schemas/words"
+            }
+          },
+          "403": {
+            "description": "Error in call"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "words": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "string",
+            "format": "textfield"
+          },
+          "results": {
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "results": {
+                "type": "object",
+                "format": "textfield"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

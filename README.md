@@ -22,3 +22,4 @@ frontend. A restful POST call needs to be made to submit a new sentence.
 The submitted sentences need to be persisted on the backend by a db of your choosing, and
 the frontend must have a display of all the previously submitted sentences (you will need to
 make another restful GET call for this operation to retrieve all the sentences).
+
