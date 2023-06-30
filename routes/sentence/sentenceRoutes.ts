@@ -9,7 +9,7 @@ class SentenceRouter {
   constructor() {
     this.router.get('/wordtype', getWordType);
 
-    this.router.get('/sentence', getSentence);
+    this.router.get('/sentence/:page', getSentence);
 
     this.router.post('/sentence/:sentence', postSentence);
 

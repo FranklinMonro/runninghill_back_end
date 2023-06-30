@@ -25,12 +25,17 @@ const getWordTypes = async (): Promise<WordTypes[] | Error> => {
   }
 };
 
-const getSentences = async (): Promise<SentenceTypes[] | Error> => {
+const getSentences = async (page: number): Promise<SentenceTypes[] | Error> => {
   try {
+    const pageSize = 10;
+    const offset = page * pageSize;
+    const limit = pageSize;
     const sentences = await sentence.findAll({
       where: {
         active: true,
       },
+      limit,
+      offset,
       raw: true,
     }).catch((err) => {
       log.log('error', `Error in getting wordTypes, error: ${err}`);

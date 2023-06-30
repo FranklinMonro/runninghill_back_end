@@ -34,7 +34,8 @@ const postSentence = async (req: Request, res: Response, next: NextFunction): Pr
 
 const getSentence = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
-    const sentences = await getSentences();
+    const { page } = req.params;
+    const sentences = await getSentences(Number(page));
     if (sentences instanceof Error) {
       throw new Error('Error in get sentences');
     }
